@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication56.Models
 {
@@ -155,7 +156,8 @@ namespace WebApplication56.Models
 
     public class RegisterAllViewModel
     {
-        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]    
         public int Id { get; set; }
 
         [Display(Name = "User Account")]

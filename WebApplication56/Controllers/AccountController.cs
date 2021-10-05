@@ -204,7 +204,10 @@ namespace WebApplication56.Controllers
                 else { AddErrors(result); }
 
             }
+            ViewBag.Id = new SelectList(db.Users, "Id", "Email", Flight.Price);
+            ViewBag.RoomNo = new SelectList(db.Flights, "FlightID", "FlightID", Flight.Price);
             return View(model);
+           
 
         }
 

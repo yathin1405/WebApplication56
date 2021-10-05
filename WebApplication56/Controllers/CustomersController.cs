@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication56.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebApplication56.Controllers
 {
@@ -14,11 +15,91 @@ namespace WebApplication56.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Customers
+        public ActionResult CustomerDashBord()
+        {
+
+            string s = User.Identity.GetUserName();
+            var UsCustomers = db.Customers.Where(p => p.Email.Equals(s)).FirstOrDefault();
+
+
+            if (UsCustomers == null)
+            {
+                @ViewBag.ResultMessage = "the is no user logged in";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                @ViewBag.userID = "Customer";
+                Customer aCustomers = db.Customers.Find(UsCustomers.CustomerId);
+
+                return View(aCustomers);
+            }
+
+        }
+
+
+        //[HttpPost]
+
+        //[ValidateAntiForgeryToken]
+        //public ActionResult GetLearner(string LearnerID)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(LearnerID))
+        //    {
+        //        Student Learner = db.Students.Where(u => u.IdentityNumber.Equals(LearnerID, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+
+
+        //        if (Learner == null)
+        //        {
+        //            ViewBag.GetLearner = "Notfind";
+        //            ViewBag.ResultMessage = "The IdentityNumber did not match any registered Student";
+        //        }
+        //        else if (Learner != null)
+        //        {
+        //            ViewBag.GetLearner = "find";
+        //            ViewBag.LeanersEmail = Learner.Email;
+        //            ViewBag.Fullname = Learner.FullName();
+        //            ViewBag.StudentId = Learner.IdentityNumber;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ViewBag.GetLearner = "Notfind";
+        //        ViewBag.ResultMessage = "You did not enter any thing";
+        //    }
+        //    string s = User.Identity.GetUserName();
+        //    var UsParents = db.parents.Where(p => p.Email.Equals(s)).FirstOrDefault();
+        //    Parent aParents = db.parents.Find(UsParents.ParentId);
+
+        //    return View("ParentDashBord", aParents);
+        //}
+
+
+
+
+        public ActionResult AddLearner(string LearnerEmail, int CustomerID)
+        {
+            return RedirectToAction("confirmLearn", "ParentLearners", new { ConfLearnerEmail = LearnerEmail, ConfCustomerID = CustomerID });
+        }
+
+
+
+
+        [HttpGet]
+        // GET: Customer
         public ActionResult Index()
         {
+
+            ViewBag.ResultMessage = TempData["ResultMessage"];
+
             return View(db.Customers.ToList());
         }
+
+
+        // GET: Customers
+        //public ActionResult Index()
+        //{
+        //    return View(db.Customers.ToList());
+        //}
 
         // GET: Customers/Details/5
         public ActionResult Details(int? id)

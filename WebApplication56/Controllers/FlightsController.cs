@@ -51,8 +51,8 @@ namespace WebApplication56.Controllers
         public ActionResult guestDetails()
         {
             List<Flight> gd = new List<Flight>();
-            var list = (from u in db.Users.Where(x => x.UserName == HttpContext.User.Identity.Name)
-                        join r in db.Flights on u.FirstName equals r.FirstName
+            var list = (from u in db.Users.Where(x => x.FirstName == HttpContext.User.Identity.Name)
+                        join r in db.Flights on u.Email equals r.Email
                         //join rm in db.Rooms on r.RoomNo equals rm.RoomNo
                         //join rt in db.roomTypes on rm.RoomTypeId equals rt.RoomTypeId
                         select new
@@ -99,7 +99,7 @@ namespace WebApplication56.Controllers
         public ActionResult Create(string id)
         {
             var flight = db.Flights.Find(id);
-            Session["flightId"] = id;
+            Session["FlightID"] = id;
             ViewBag.Id = new SelectList(db.Users, "Id", "Email");
             ViewBag.flight = new SelectList(db.Flights, "Id", "FirstName");
             return View();
@@ -125,50 +125,76 @@ namespace WebApplication56.Controllers
 
         public ActionResult ConfirmFlight(int? FlightID)
         {
-            if (FlightID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Flight reservation = db.Flights.Find(FlightID);
-            if (reservation == null)
-            {
-                return HttpNotFound();
-            }
-            //Flight flight = db.Flights.Where(x => x.FlightID == flight.Email).FirstOrDefault();
-
-            //GuestDetails Gdetails = new GuestDetails()
+            //if (ModelState.IsValid)
             //{
-            //    checkInDate = reservation.checkInDate,
-            //    checkOutDate = reservation.checkOutDate,
-            //    numGuests = reservation.numGuests,
-            //    DayNo = reservation.DayNo,
-            //    bookings = 0,
-            //    RoomNo = reservation.RoomNo,
-            //    FloorNum = rooms.FloorNum,
-            //    Type = rooms.Roomtype.Type,
-            //    BasicCharge = rooms.Roomtype.BasicCharge,
-            //    TotalPrice = reservation.TotalPrice
-            //};
+            //    db.Flights.Add(flight);
+            //    db.SaveChanges();
+            //    Session["bookID"] = flight.FlightID;
+            //    return RedirectToAction("Payment");
+            //}
+            {
+                if (FlightID == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Flight reservation = db.Flights.Find(FlightID);
+                if (reservation == null)
+                {
+                    return HttpNotFound();
+                }
+                //Flight flight = db.Flights.Where(x => x.FlightID == flight.Email).FirstOrDefault();
 
-            var rm = db.Flights.Find(reservation.FlightID);
-            //var rmb = db.roomTypes.Find(rm.RoomTypeId);
+                //GuestDetails Gdetails = new GuestDetails()
+                //{
+                //    checkInDate = reservation.checkInDate,
+                //    checkOutDate = reservation.checkOutDate,
+                //    numGuests = reservation.numGuests,
+                //    DayNo = reservation.DayNo,
+                //    bookings = 0,
+                //    RoomNo = reservation.RoomNo,
+                //    FloorNum = rooms.FloorNum,
+                //    Type = rooms.Roomtype.Type,
+                //    BasicCharge = rooms.Roomtype.BasicCharge,
+                //    TotalPrice = reservation.TotalPrice
+                //};
+
+                var rm = db.Flights.Find(reservation.FlightID);
+                //var rmb = db.roomTypes.Find(rm.RoomTypeId);
 
 
-            Flight Gdetails = new Flight();
-            Gdetails.Departure_Date = reservation.Departure_Date;
-            Gdetails.DepartureTime = reservation.DepartureTime;
-            Gdetails.NumAChild = reservation.NumAChild;
-            Gdetails.NumAdults = reservation.NumAdults;
+                Flight Gdetails = new Flight();
+                Gdetails.TO = reservation.TO;
+                Gdetails.FROM = reservation.FROM;
+                Gdetails.Airways = reservation.Airways;
+                Gdetails.Return_Date = reservation.Return_Date; ;
+                Gdetails.Departure_Date = reservation.Departure_Date;
+                Gdetails.DepartureTime = reservation.DepartureTime;
+                Gdetails.NumAChild = reservation.NumAChild;
+                Gdetails.NumAdults = reservation.NumAdults;
+                Gdetails.FirstName = reservation.FirstName;
+                Gdetails.LastName = reservation.LastName;
+                Gdetails.Email = reservation.Email;
+
+
+                //Gdetails.bookings = 0;
+                Gdetails.passenger_Cost = rm.passengerCost();
+                //Gdetails.ReturnTicket_Price = rm.ReturnTicketPrice();
+                //Gdetails.Seat_Type_Calc = rm.SeatTypeCalc();
+                //Gdetails. = rm.BasicCharge;
+                //Gdetails.TotalPrice = reservation.TotalPrice;
+                //Gdetails.Discount = reservation.Discount;
+                return View(Gdetails);
+            }
 
             
-            //Gdetails.bookings = 0;
-            Gdetails.passenger_Cost = rm.passengerCost();
-            Gdetails.ReturnTicket_Price = rm.ReturnTicketPrice();
-            Gdetails.Seat_Type_Calc = rm.SeatTypeCalc();
-            //Gdetails. = rm.BasicCharge;
-            //Gdetails.TotalPrice = reservation.TotalPrice;
-            //Gdetails.Discount = reservation.Discount;
-            return View(Gdetails);
+        }
+        //public ActionResult ConfirmFlight()
+        //{
+        //    return View("Payment");
+        //}
+        public ActionResult Payment()
+        {
+            return View(db.Flights.ToList());
         }
         // GET: Flights/Edit/5
         public ActionResult Edit(int? id)
