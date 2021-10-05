@@ -36,7 +36,42 @@ namespace WebApplication56.Models
         {
             return new ApplicationDbContext();
         }
+        //public DbSet<Customer> Customers { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
+        public DbSet<RegisterAllViewModel> RegisterAllViewModel { get; set; }
+        public System.Data.Entity.DbSet<WebApplication56.Models.Event> Events { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
 
+        public DbSet<Reservation> reservations { get; set; }
+        public DbSet<Rooms> Rooms { get; set; }
+        public DbSet<RoomTypes> roomTypes { get; set; }
+        public DbSet<Payments> payment { get; set; }
+
+        //public DbSet<Extras> extrass { get; set; }
+
+        public DbSet<Shuttle> shuttle { get; set; }
+        public DbSet<AddEvents> addEventD { get; set; }
+        public DbSet<BookEvent> bookEvent { get; set; }
+        public DbSet<PersonalData> personalData { get; set; }
+        public DbSet<WalkinReserve> walkReserve { get; set; }
+        public DbSet<Bill> bills { get; set; }
+
+
+
+
+        public System.Data.Entity.DbSet<WebApplication56.Models.GuestDetails> GuestDetails { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication56.Models.ViewModel> ViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication56.Models.Description> Descriptions { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication56.Models.VM> VMs { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication56.Models.Cancellation> Cancellations { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication56.Models.AddPrice> AddPrices { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication56.Models.RoomService> RoomServices { get; set; }
         public System.Data.Entity.DbSet<WebApplication56.Models.Flight> Flights { get; set; }
 
         public System.Data.Entity.DbSet<WebApplication56.Models.Customer> Customers { get; set; }
