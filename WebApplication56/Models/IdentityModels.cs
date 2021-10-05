@@ -42,5 +42,11 @@ namespace WebApplication56.Models
         public System.Data.Entity.DbSet<WebApplication56.Models.Customer> Customers { get; set; }
 
         public System.Data.Entity.DbSet<WebApplication56.Models.RegisterAllViewModel> RegisterAllViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication56.Models.PayPalModel> PayPalModels { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication56.Models.Quote> Quotes { get; set; }
+
+        //public System.Data.Entity.DbSet<WebApplication56.Models.Transaction> Transactions { get; set; }
     }
 }
