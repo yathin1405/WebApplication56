@@ -47,6 +47,10 @@ namespace WebApplication56.Models
         [Display(Name = "Tour Duration")]
         public string Tour_Duration { get; set; }
 
+        [Display(Name = "Email address")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
         [Display(Name = "Tour Date")]
         [DataType(DataType.Date)]
         public DateTime Tour_Date { get; set; }

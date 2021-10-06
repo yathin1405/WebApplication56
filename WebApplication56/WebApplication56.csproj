@@ -187,12 +187,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddEventsController.cs" />
+    <Compile Include="Controllers\AddPricesController.cs" />
+    <Compile Include="Controllers\CruisesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\FlightsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\QuotesController.cs" />
+    <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -327,9 +331,28 @@
     <Content Include="Views\Quotes\Details.cshtml" />
     <Content Include="Views\Quotes\Edit.cshtml" />
     <Content Include="Views\Quotes\Index.cshtml" />
+    <Content Include="Views\Cruises\Create.cshtml" />
+    <Content Include="Views\Cruises\Delete.cshtml" />
+    <Content Include="Views\Cruises\Details.cshtml" />
+    <Content Include="Views\Cruises\Edit.cshtml" />
+    <Content Include="Views\Cruises\Index.cshtml" />
+    <Content Include="Views\Tours\Create.cshtml" />
+    <Content Include="Views\Tours\Delete.cshtml" />
+    <Content Include="Views\Tours\Details.cshtml" />
+    <Content Include="Views\Tours\Edit.cshtml" />
+    <Content Include="Views\Tours\Index.cshtml" />
+    <Content Include="Views\Cruises\guestDetails.cshtml" />
+    <Content Include="Views\Cruises\Payment.cshtml" />
+    <Content Include="Views\Cruises\ConfirmCruise.cshtml" />
+    <Content Include="Views\Tours\guestDetails.cshtml" />
+    <Content Include="Views\Tours\ConfirmTour.cshtml" />
+    <Content Include="Views\Tours\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AddEvents\" />
+    <Folder Include="Views\AddPrices\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

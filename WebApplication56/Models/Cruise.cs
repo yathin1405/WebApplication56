@@ -20,6 +20,10 @@ namespace WebApplication56.Models
             Royal_Caribbean_Cruises,
 
         }
+        [Display(Name = "Email address")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
         [Display(Name = "From")]
         public From3 FROM { get; set; }
         public enum From3
@@ -55,6 +59,7 @@ namespace WebApplication56.Models
         [Range(0, 100)]
         public string Num_Guests { get; set; }
 
+        public const float price = 15000; 
 
         //[Display(Name = "From")]
         //public string LocationFrom { get; set; }

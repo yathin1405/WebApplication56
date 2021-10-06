@@ -123,6 +123,10 @@ namespace WebApplication56.Models
             this.Address = user.Address;
             //this.reservationns = user.reservationns;
         }
+        public virtual List<Cruise> Cruise { get; set; }
+        //public virtual List<Reservation> reservationns { get; set; }
+        public virtual List<Tour> Tours { get; set; }
+
     }
 
     public class ResetPasswordViewModel

@@ -38,7 +38,7 @@ namespace WebApplication56.Models
         }
         //public DbSet<Customer> Customers { get; set; }
         public DbSet<Staff> Staffs { get; set; }
-        public DbSet<RegisterAllViewModel> RegisterAllViewModel { get; set; }
+        //public DbSet<RegisterAllViewModel> RegisterAllViewModel { get; set; }
         public System.Data.Entity.DbSet<WebApplication56.Models.Event> Events { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
 
@@ -81,6 +81,10 @@ namespace WebApplication56.Models
         public System.Data.Entity.DbSet<WebApplication56.Models.PayPalModel> PayPalModels { get; set; }
 
         public System.Data.Entity.DbSet<WebApplication56.Models.Quote> Quotes { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication56.Models.Cruise> Cruises { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication56.Models.Tour> Tours { get; set; }
 
         //public System.Data.Entity.DbSet<WebApplication56.Models.Transaction> Transactions { get; set; }
     }
